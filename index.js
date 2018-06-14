@@ -7,7 +7,7 @@ const app = express();
 //requests handlers
 
 app.get("/", (req,res) => {
-  res.send({ hi: 'there' });
+  res.send({ bye: 'buddy' });
 });
 
 //environment variable
