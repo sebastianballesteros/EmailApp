@@ -9,6 +9,10 @@ import reduxThunk from "redux-thunk";
 import App from "./components/App.js";
 import reducers from "./reducers";
 
+//just of testing 
+import axios from "axios";
+window.axios = axios;
+
 
 const store = createStore( reducers, {}, applyMiddleware(reduxThunk) );
 

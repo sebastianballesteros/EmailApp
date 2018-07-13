@@ -1,6 +1,5 @@
 //to make AJAX requests
 import axios from "axios";
-import { FETCH_USER } from "./types";
 
 export const fetchUser = () => {
   //whenever the action creator is called
@@ -10,7 +9,7 @@ export const fetchUser = () => {
   return async function(dispatch) {
     const res = await axios.get("/api/current_user");
     dispatch({
-        type: FETCH_USER,
+        type: "fetch_user",
         payload: res.data
       });
   };
@@ -21,7 +20,25 @@ export const handleToken = (token) => async dispatch => {
   //post request to a backend server with the token received from transaction
   const res = await axios.post("/api/stripe", token);
   dispatch({
-    type: FETCH_USER,
+    type: "fetch_user",
     payload: res.data
+  });
+};
+
+export const submitSurvey = (values, history) => async dispatch =>  {
+  const res = await axios.post("/api/surveys", values);
+  history.push("/surveys");
+  //everything went ok
+  dispatch({
+    type: "fetch_user",
+    payload: res.data
+  });
+};
+
+export const fetchSurveys = () => async dispatch => {
+  const res = await axios.get("api/surveys");
+  dispatch({
+    type: "fetch_surveys",
+    payload:res.data
   });
 };

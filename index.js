@@ -7,6 +7,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 require("./models/User.js");
+require("./models/Survey.js")
 require("./services/passport.js");
 
 
@@ -32,6 +33,7 @@ app.use(passport.session());
 //call the function exported from authRoutes
 require("./routes/authRoutes.js")(app);
 require("./routes/billingRoutes.js")(app);
+require("./routes/surveyRoutes.js")(app);
 
 //express handles the routes
 if(process.env.NODE_ENV === "production"){
